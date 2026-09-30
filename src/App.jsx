@@ -1,27 +1,33 @@
-import { Link, Route, Routes } from "react-router";
+import { Routes, Route } from "react-router";
 
 import Header from "./components/Header";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import Home from "./pages/Home";
+import Article from "./pages/Article";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import "./App.css";
+import CreateArticle from "./pages/CreateArticle";
 
 function App() {
   return (
     <>
       <Header />
+
       <Routes>
-        <Route
-          path="/"
-          element={
-            <main>
-              <h1>Failsafe</h1>
-              <Link to="/login">Log in</Link>
-              <Link to="/register">Create account</Link>
-            </main>
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/article/:id" element={<Article />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        <Route
+          path="/create"
+          element={
+            <ProtectedRoute>
+              <CreateArticle />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
