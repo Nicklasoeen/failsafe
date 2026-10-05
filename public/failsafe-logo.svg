@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-labelledby="title desc">
+  <title id="title">FAILSAFE logo</title>
+  <desc id="desc">FAILSAFE wordmark inside a horizontal rectangular broken frame with a modest opening on the right side.</desc>
+
+  <g fill="none" stroke="#111111" stroke-width="16" stroke-linecap="square">
+    <!-- frame, intentionally broken on the right -->
+    <path d="M40 40 H680" />
+    <path d="M40 180 H680" />
+    <path d="M40 40 V180" />
+    <path d="M680 40 V88" />
+    <path d="M680 132 V180" />
+  </g>
+
+  <text x="360" y="132"
+        text-anchor="middle"
+        fill="#111111"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="72"
+        font-weight="800"
+        letter-spacing="8">FAILSAFE</text>
+</svg>

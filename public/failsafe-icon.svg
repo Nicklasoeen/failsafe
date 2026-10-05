@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">FAILSAFE broken frame icon</title>
+  <desc id="desc">Horizontal rectangular frame with a modest opening on the right side.</desc>
+
+  <g fill="none" stroke="#111111" stroke-width="16" stroke-linecap="square">
+    <path d="M28 24 H192" />
+    <path d="M28 136 H192" />
+    <path d="M28 24 V136" />
+    <path d="M192 24 V64" />
+    <path d="M192 96 V136" />
+  </g>
+</svg>
