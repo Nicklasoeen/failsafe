@@ -47,74 +47,103 @@ export default function CreateArticle() {
   };
 
   return (
-    <main>
-      <h1>Create article</h1>
+    <main className="create-article-page">
+      <header className="create-article__header">
+        <h1>Create article</h1>
+        <p>Write your report and set how it appears in the feed.</p>
+      </header>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          type="text"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          required
-        />
+      <form className="create-article__form" onSubmit={handleSubmit}>
+        <section className="create-article__editor" aria-label="Article content">
+          <div className="create-article__field create-article__field--title">
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              required
+            />
+          </div>
 
-        <label htmlFor="excerpt">Excerpt</label>
-        <textarea
-          id="excerpt"
-          value={excerpt}
-          onChange={(event) => setExcerpt(event.target.value)}
-        />
+          <div className="create-article__field">
+            <label htmlFor="excerpt">Excerpt</label>
+            <textarea
+              id="excerpt"
+              rows="3"
+              value={excerpt}
+              onChange={(event) => setExcerpt(event.target.value)}
+            />
+          </div>
 
-        <label htmlFor="content">Content</label>
-        <textarea
-          id="content"
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-          required
-        />
+          <div className="create-article__field create-article__field--content">
+            <label htmlFor="content">Article body</label>
+            <textarea
+              id="content"
+              rows="18"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              required
+            />
+          </div>
 
-        <label htmlFor="imageUrl">Image URL</label>
-        <input
-          id="imageUrl"
-          type="url"
-          value={imageUrl}
-          onChange={(event) => setImageUrl(event.target.value)}
-        />
+          <section className="create-article__settings" aria-label="Publication details">
+            <h2>Publication details</h2>
 
-        <label htmlFor="category">Category</label>
-        <select
-          id="category"
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
-        >
-          <option value="Incidents">Incidents</option>
-          <option value="Security">Security</option>
-          <option value="Research">Research</option>
-          <option value="Policy">Policy</option>
-          <option value="Work">Work</option>
-          <option value="Society">Society</option>
-        </select>
+            <div className="create-article__settings-fields">
+              <div className="create-article__field">
+                <label htmlFor="articleType">Article type</label>
+                <select
+                  id="articleType"
+                  value={articleType}
+                  onChange={(event) => setArticleType(event.target.value)}
+                >
+                  <option value="NEWS">News</option>
+                  <option value="INCIDENT">Incident</option>
+                  <option value="ANALYSIS">Analysis</option>
+                  <option value="RESEARCH">Research</option>
+                </select>
+              </div>
 
-        <label htmlFor="articleType">Article type</label>
-        <select
-          id="articleType"
-          value={articleType}
-          onChange={(event) => setArticleType(event.target.value)}
-        >
-          <option value="NEWS">News</option>
-          <option value="INCIDENT">Incident</option>
-          <option value="ANALYSIS">Analysis</option>
-          <option value="RESEARCH">Research</option>
-        </select>
+              <div className="create-article__field">
+                <label htmlFor="category">Category</label>
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                >
+                  <option value="Incidents">Incidents</option>
+                  <option value="Security">Security</option>
+                  <option value="Research">Research</option>
+                  <option value="Policy">Policy</option>
+                  <option value="Work">Work</option>
+                  <option value="Society">Society</option>
+                </select>
+              </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Publishing..." : "Publish article"}
-        </button>
+              <div className="create-article__field">
+                <label htmlFor="imageUrl">Image URL</label>
+                <input
+                  id="imageUrl"
+                  type="url"
+                  value={imageUrl}
+                  onChange={(event) => setImageUrl(event.target.value)}
+                />
+              </div>
+            </div>
+
+            <button
+              className="create-article__submit"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Publishing..." : "Publish article"}
+            </button>
+          </section>
+        </section>
       </form>
 
-      {error && <p>{error}</p>}
+      {error && <p className="create-article__error" role="alert">{error}</p>}
     </main>
   );
 }

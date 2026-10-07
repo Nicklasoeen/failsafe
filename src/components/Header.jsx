@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
@@ -27,16 +27,17 @@ export default function Header() {
           className="site-nav"
           aria-label="Main navigation"
         >
-          <Link to="/">Latest</Link>
+          <NavLink to="/" end>Latest</NavLink>
 
           {user ? (
             <>
-              <Link
+              <NavLink
                 to="/create"
+                end
                 className="site-nav__create"
               >
                 Create article
-              </Link>
+              </NavLink>
 
               <button
                 className="site-nav__button"
@@ -48,16 +49,17 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link to="/login">
+              <NavLink to="/login" end>
                 Log in
-              </Link>
+              </NavLink>
 
-              <Link
+              <NavLink
                 to="/register"
+                end
                 className="site-nav__register"
               >
                 Register
-              </Link>
+              </NavLink>
             </>
           )}
         </nav>
