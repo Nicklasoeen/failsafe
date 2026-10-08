@@ -39,49 +39,63 @@ export default function Register() {
   };
 
   return (
-    <main>
-      <h1>Create account</h1>
+    <main className="auth-page">
+      <section className="auth-panel" aria-labelledby="register-title">
+        <header className="auth-panel__header">
+          <p className="auth-panel__label">Join Failsafe</p>
+          <h1 id="register-title">Create account</h1>
+        </header>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="displayName">Display name</label>
-        <input
-          id="displayName"
-          type="text"
-          value={displayName}
-          onChange={(event) => setDisplayName(event.target.value)}
-          required
-        />
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="auth-form__field">
+            <label htmlFor="displayName">Display name</label>
+            <input
+              id="displayName"
+              type="text"
+              autoComplete="name"
+              value={displayName}
+              onChange={(event) => setDisplayName(event.target.value)}
+              required
+            />
+          </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
+          <div className="auth-form__field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </div>
 
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          minLength="6"
-          required
-        />
+          <div className="auth-form__field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              autoComplete="new-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              minLength="6"
+              required
+            />
+          </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating account..." : "Create account"}
-        </button>
-      </form>
+          <button className="auth-form__submit" type="submit" disabled={loading}>
+            {loading ? "Creating account..." : "Create account"}
+          </button>
+        </form>
 
-      {error && <p>{error}</p>}
-      {message && <p>{message}</p>}
+        {error && <p className="auth-message auth-message--error" role="alert">{error}</p>}
+        {message && <p className="auth-message auth-message--success" role="status">{message}</p>}
 
-      <p>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+        <p className="auth-panel__switch">
+          Already have an account? <Link to="/login">Log in</Link>
+        </p>
+      </section>
     </main>
   );
 }

@@ -3,6 +3,18 @@ import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 
+function formatArticleDate(date) {
+  if (!date) {
+    return "";
+  }
+
+  return new Intl.DateTimeFormat("en", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
 export default function Article() {
   const { id } = useParams();
   const { user } = useAuth();
@@ -52,12 +64,16 @@ export default function Article() {
   };
 
   if (loading) {
-    return <main>Loading article...</main>;
+    return (
+      <main className="article-page article-page--status">
+        <p>Loading article...</p>
+      </main>
+    );
   }
 
   if (error) {
     return (
-      <main>
+      <main className="article-page article-page--status">
         <h1>Could not load article</h1>
         <p>{error}</p>
       </main>
@@ -65,26 +81,46 @@ export default function Article() {
   }
 
   return (
-    <main>
-      <p>{article.article_type}</p>
+    <main className="article-page">
+      <article className="article-detail">
+        <header className="article-detail__header">
+          <p className="article-detail__meta">
+            {article.article_type} <span aria-hidden="true">·</span> {article.category}
+          </p>
 
-      <h1>{article.title}</h1>
+          <h1>{article.title}</h1>
 
-      {article.excerpt && <p>{article.excerpt}</p>}
+          {article.excerpt && (
+            <p className="article-detail__excerpt">{article.excerpt}</p>
+          )}
 
-      <p>{article.category}</p>
+          <div className="article-detail__byline">
+            {article.created_at && (
+              <time dateTime={article.created_at}>
+                {formatArticleDate(article.created_at)}
+              </time>
+            )}
 
-      {user?.id === article.author_id && (
-        <button type="button" onClick={handleDelete}>
-          Delete article
-        </button>
-      )}
+            {user?.id === article.author_id && (
+              <button
+                className="article-detail__delete"
+                type="button"
+                onClick={handleDelete}
+              >
+                Delete article
+              </button>
+            )}
+          </div>
+        </header>
 
       {article.image_url && (
-        <img src={article.image_url} alt="" />
+          <figure className="article-detail__figure">
+            <img src={article.image_url} alt="" />
+          </figure>
       )}
 
-      <div>{article.content}</div>
+        <div className="article-detail__body">{article.content}</div>
+      </article>
     </main>
   );
 }
