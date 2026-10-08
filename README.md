@@ -74,6 +74,14 @@ RLS is the security boundary for database operations. Hiding the delete button f
 
 Article types and categories offered by the form are defined in `src/pages/CreateArticle.jsx`. If the database uses enum types or constraints, ensure their allowed values match the form options.
 
+### Profiles and signup trigger
+
+User profile data is stored separately from Supabase Auth in a `profiles` table. Each profile should be linked one-to-one to its Auth user, typically by using the Auth user ID as the profile row's primary key and as a foreign key to `auth.users.id`.
+
+During registration, the app sends the submitted display name as Auth user metadata (`display_name`). A database trigger on new rows in `auth.users` creates the corresponding profile row and copies the display name from that metadata. Keeping this logic in the database ensures profiles are created for signups independently of the client page completing its request.
+
+The trigger and table definition are managed in Supabase and are not included as SQL migrations in this repository. Keep the database schema and trigger function documented or version-controlled alongside the project when possible. Enable RLS on `profiles` and scope profile access to the matching authenticated user if the application exposes profile reads or updates.
+
 ## Routes
 
 | Route | Description | Access |
