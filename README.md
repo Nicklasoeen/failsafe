@@ -119,3 +119,43 @@ npm run preview   # Preview the production build locally
 Run `npm run build` to create the production files in `dist/`.
 
 The project includes a `vercel.json` rewrite from all paths to `/index.html`. This allows React Router to handle direct visits and page refreshes on client-side routes when deployed to Vercel. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` to the Vercel project's environment variables as well.
+
+
+
+## AI Usage Log
+
+AI tools were used during development to support learning,
+explain technical concepts, and assist with troubleshooting.
+
+### 1. Supabase Authentication
+- **Tool:** ChatGPT
+- **Date:** 28 September 2026
+- **Purpose:** Understanding Supabase authentication, user profiles,
+  and how database triggers connect registered users to profile records.
+- **Outcome:** Improved understanding of authentication workflows
+  and the relationship between Supabase Auth and PostgreSQL.
+
+### 2. SQL and Row Level Security
+- **Tool:** ChatGPT
+- **Date:** 28 September 2026
+- **Purpose:** Understanding SQL queries, database relationships,
+  RLS policies, and the use of auth.uid() for access control.
+- **Outcome:** Gained a better understanding of how database
+  permissions protect user data.
+
+### 3. Database Permissions
+- **Tool:** ChatGPT
+- **Date:** 5 October 2026
+- **Purpose:** Understanding the difference between PostgreSQL
+  GRANT permissions and Row Level Security after encountering
+  a "permission denied" error.
+- **Outcome:** Learned how database privileges and RLS work
+  together when accessing Supabase through the API.
+
+### 4. Deployment and Routing
+- **Tool:** ChatGPT
+- **Date:** 8 October 2026
+- **Purpose:** Understanding deployment configuration, environment
+  variables, React Router, and Supabase authentication redirects.
+- **Outcome:** Improved understanding of deploying a React
+  application and configuring backend services for production.
